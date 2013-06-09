@@ -1,6 +1,8 @@
-package nl.laurenshop;
+package nl.laurenshop.srtshift;
 
 import static org.junit.Assert.assertEquals;
+
+import nl.laurenshop.srtshift.SRTShift;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package nl.laurenshop;
+package nl.laurenshop.srtshift;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,8 +23,8 @@ public class SRTShift
 		File outfile = infile;
 		infile = bakfile;
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				new FileInputStream(infile), "ISO-8859-1"));
+		BufferedReader reader =
+			new BufferedReader(new InputStreamReader(new FileInputStream(infile), "ISO-8859-1"));
 		ArrayList<ArrayList<String>> subtitles = new ArrayList<ArrayList<String>>();
 		String line = reader.readLine();
 		while (line != null)
@@ -36,9 +36,9 @@ public class SRTShift
 				line = reader.readLine();
 			}
 			if (!subtitle.get(2).startsWith("Downloaded From")
-					&& !subtitle.get(2).startsWith("Gedownload van")
-					&& !subtitle.get(2).startsWith("vertaling:")
-					&& !subtitle.get(2).startsWith("Dutch"))
+				&& !subtitle.get(2).startsWith("Gedownload van")
+				&& !subtitle.get(2).startsWith("vertaling:")
+				&& !subtitle.get(2).startsWith("Dutch"))
 			{
 				subtitles.add(subtitle);
 			}
@@ -92,7 +92,7 @@ public class SRTShift
 				ArrayList<String> sub = subtitles.get(i);
 				String[] times = sub.get(1).split(" --> ");
 				System.out.println(String.format("%s %s %s", i == 0 ? "-> " : "   ", times[0],
-						sub.get(2)));
+					sub.get(2)));
 			}
 			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 			System.out.print("Enter time [" + doubleToTime(start) + "]: ");
@@ -105,7 +105,7 @@ public class SRTShift
 				ArrayList<String> sub = subtitles.get(i);
 				String[] times = sub.get(1).split(" --> ");
 				System.out.println(String.format("%s %s %s", i == subtitles.size() - 1 ? "-> "
-						: "   ", times[0], sub.get(2)));
+					: "   ", times[0], sub.get(2)));
 			}
 
 			System.out.print("Enter time [" + doubleToTime(end) + "]: ");
@@ -116,7 +116,7 @@ public class SRTShift
 		}
 
 		System.out.println(String.format("%s = %s, %s = %s", doubleToTime(start),
-				doubleToTime(newStart), doubleToTime(end), doubleToTime(newEnd)));
+			doubleToTime(newStart), doubleToTime(end), doubleToTime(newEnd)));
 		if (newStart != start || newEnd != end)
 		{
 			shift = newStart - start;
@@ -124,7 +124,7 @@ public class SRTShift
 		}
 
 		System.out.println(String.format("Shift: %s\nStretch: %.5f (%s per minute)",
-				doubleToTime(shift, true), stretch, doubleToTime((stretch - 1) * 60, true)));
+			doubleToTime(shift, true), stretch, doubleToTime((stretch - 1) * 60, true)));
 
 		int count = 0;
 		for (ArrayList<String> sub : subtitles)
@@ -187,8 +187,8 @@ public class SRTShift
 				sign = "-";
 
 		return sign
-				+ String.format("%02.0f:%02.0f:%06.3f", Math.floor(v / 3600d),
-						Math.floor(v / 60d % 60d), v % 60);
+			+ String.format("%02.0f:%02.0f:%06.3f", Math.floor(v / 3600d),
+				Math.floor(v / 60d % 60d), v % 60).replace('.', ',');
 	}
 
 }
