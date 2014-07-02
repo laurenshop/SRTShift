@@ -1,6 +1,6 @@
 De inhoud
 ```groovy
 if (dit == dat)
-  Die.doe(iets)
+  Die.doe.en.nogoe(iets)
 ```
 Ok
