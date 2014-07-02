@@ -1,5 +1,5 @@
 De inhoud
-```
-Test
+```groovy
+if (dit == dat)
 ```
 Ok
